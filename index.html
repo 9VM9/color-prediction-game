@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Color Prediction Game</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 50px; }
+    .color-box { width: 200px; height: 200px; margin: 20px auto; }
+  </style>
+</head>
+<body>
+  <h1>Current Color:</h1>
+  <div id="color" class="color-box"></div>
+  <script>
+    async function fetchColor() {
+      const res = await fetch('/api/current');
+      const data = await res.json();
+      document.getElementById('color').style.backgroundColor = data.color;
+    }
+    fetchColor();
+    setInterval(fetchColor, 15000);
+  </script>
+</body>
+</html>
